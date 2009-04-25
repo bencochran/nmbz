@@ -30,8 +30,41 @@ More info: http://github.com/bcochran/nmbz
 
 class matrix(object):
 	'''
-	Matrix class.
+	Matrix class. This class allows you to represent a matrix and perform
+	operations on said matrix.
 	
+	It currently handles matrix multiplication, and pulling nice slices of the
+	matrix.
+	
+	Examples:
+	m = matrix([[1,2,3],[4,5,6],[7,8,9]])
+	>>> m[1,2]
+	6
+	>>> m[:,2]
+	matrix([[3],
+	        [6],
+	        [9]])
+	>>> m[2]
+	matrix([[7, 8, 9]])
+	>>> m[2,:2]
+	matrix([[7, 8]])
+	>>> m[0:2,:2]
+	matrix([[1, 2],
+	        [4, 5]])
+	>>> n = matrix([[0,1,0],[0,0,1],[1,0,0]])
+	>>> m*n
+	matrix([[3, 1, 2],
+	        [6, 4, 5],
+	        [9, 7, 8]])
+	>>> n*m
+	matrix([[4, 5, 6],
+	        [7, 8, 9],
+	        [1, 2, 3]])
+	>>> m*2
+	matrix([[ 2,  4,  6],
+	        [ 8, 10, 12],
+	        [14, 16, 18]])
+
 	'''
 	def __init__(self, data, **optional_args):
 		self.data = []
@@ -44,7 +77,7 @@ class matrix(object):
 		#	self.dtype = None
 		#	dtypeAuto = True
 		
-		# size = (m,n) for an m x n matrix (m rows, n columns)
+		# mSize = (m,n) for an m x n matrix (m rows, n columns)
 		self.mSize = (None, None)
 		self.longestString = 0
 		if isinstance(data, (list, tuple)):
